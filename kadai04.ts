@@ -8,9 +8,9 @@ function* kadaiq1() {
     const input: string = yield* inputPrompt('文章を入力してください')
     const match: string = yield* inputPrompt('調べる文字列を入力してください。')
     yield input.match(match) ? 
-        yield document.getElementById('q1').innerHTML = `「${input}」中に「${match}」は含まれます`
+        document.getElementById('q1').innerHTML = `「${input}」中に「${match}」は含まれます`
         :
-        yield document.getElementById('q1').innerHTML = `「${input}」中に「${match}」は含まれません。`
+        document.getElementById('q1').innerHTML = `「${input}」中に「${match}」は含まれません。`
 }
 
 const hoge = kadaiq1()
