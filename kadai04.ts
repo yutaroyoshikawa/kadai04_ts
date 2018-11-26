@@ -5,24 +5,24 @@ function* inputPrompt(description: string){
 }
 
 function* kadaiq1() {
-    const input: string = yield inputPrompt('文章を入力してください')
-    const match: string = yield inputPrompt('調べる文字列を入力してください。')
-    const decision = () => (
-        input.match(match) ? 
-        document.getElementById('q1').innerHTML = `「${input}」中に「${match}」は含まれます`
+    const input: string = yield* inputPrompt('文章を入力してください')
+    const match: string = yield* inputPrompt('調べる文字列を入力してください。')
+    yield input.match(match) ? 
+        yield document.getElementById('q1').innerHTML = `「${input}」中に「${match}」は含まれます`
         :
-        document.getElementById('q1').innerHTML = `「${input}」中に「${match}」は含まれません。`
-    )
-    yield decision()
+        yield document.getElementById('q1').innerHTML = `「${input}」中に「${match}」は含まれません。`
 }
 
-kadaiq1()
+const hoge = kadaiq1()
+hoge.next()
+hoge.next()
+hoge.next()
 
 const kadaiq2 = (): void => {
     const input: number[] = [76, 50, 41, 58, 61, 94]
     const max: number = Math.max(...input)
     const min: number = Math.min(...input)
-    document.getElementById('q2').innerHTML = `76, 50, 41, 58, 61, 94の数値の中で最大値は${max}、最小値は${min}です。`
+    document.getElementById('q2').innerHTML = `${input}の数値の中で最大値は${max}、最小値は${min}です。`
 }
 
 kadaiq2()
